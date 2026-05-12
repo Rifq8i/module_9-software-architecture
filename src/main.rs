@@ -13,9 +13,13 @@ pub struct UserCreatedHandler;
 impl MessageHandler<UserCreatedEventMessage> for UserCreatedHandler {
     fn handle(&self, message: Box<UserCreatedEventMessage>) -> Result<(), HandleError> {
         let ten_millis = time::Duration::from_millis(1000);
-        let now = time::Instant::now();
-        println!("In [2406495483]. Message received: {:?}", message);
+        thread::sleep(ten_millis);
+        println!("In [2405495483]. Message received: {:?}", message);
         Ok(())
+    }
+
+    fn get_handler_action(&self) -> String {
+        "user_created".to_owned()
     }
 }
 
